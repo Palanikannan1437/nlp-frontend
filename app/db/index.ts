@@ -11,6 +11,7 @@ const {
 if (!host || !username || !password) {
   throw new Error("Some of env variables are missing");
 }
+
 const client = new Client({
   fetch,
   host,
