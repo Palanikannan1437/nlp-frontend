@@ -9,12 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@planetscale/database": "^1.7.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.33",
     "@types/react-dom": "18.0.11",
     "autoprefixer": "10.4.14",
+    "dotenv": "^16.0.3",
+    "drizzle-kit": "0.17.1-609a4f0",
+    "drizzle-orm": "^0.23.8",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "mysql2": "^3.2.0",
     "next": "13.3.0",
     "postcss": "8.4.21",
     "react": "18.2.0",
