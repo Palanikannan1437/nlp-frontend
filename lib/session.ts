@@ -1,3 +1,4 @@
+import { getUser } from "@/app/db";
 import { NextAuthOptions } from "next-auth";
 import { getServerSession } from "next-auth/next"
 import GoogleProvider from "next-auth/providers/google";
@@ -9,6 +10,10 @@ export async function getSession() {
 export async function getCurrentUser() {
   const session = await getSession()
 
+  if (session?.user?.email) {
+    const userFromDB = await getUser(session?.user?.email)
+    return { ...session?.user, ...userFromDB[0] }
+  }
   return session?.user
 }
 
@@ -16,7 +21,7 @@ export const authOptions: NextAuthOptions = {
   secret: process.env.SECRET,
   providers: [
     GoogleProvider({
-      clientId: process.env.NEXTAUTH_SECRET as string,
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
   ],
