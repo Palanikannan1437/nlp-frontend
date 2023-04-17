@@ -9,9 +9,9 @@ const {
   DATABASE_PASSWORD: password,
 } = process.env;
 
-// if (!host || !username || !password) {
-//   throw new Error("Some of env variables are missing");
-// }
+if (!host || !username || !password) {
+  throw new Error("Some of env variables are missing");
+}
 
 const client = new Client({
   fetch,
@@ -54,6 +54,7 @@ export async function insertCompany(company: NewCompany) {
 export const getApplication = async (id: number) => {
   return await db.select().from(applications).leftJoin(users, eq(applications.user_id, users.id)).leftJoin(companies, eq(applications.company_id, companies.id)).where(eq(applications.id, id));
 }
+
 export const getApplications = async () => {
   return await db.select().from(applications);
 }

@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   const personality = await Predict(application.resume as string)
   const summary = await Summarize(application.resume as string)
 
-  const res = await insertApplication({ ...application, personality, summary });
+  await insertApplication({ ...application, personality, summary });
 
   return NextResponse.json({ data: personality });
 }
