@@ -8,6 +8,8 @@ async function getUserNotAppliedCompanies(currUserId: number) {
   return await db.select().from(companies).leftJoin(applications, and(eq(applications.company_id, companies.id), eq(applications.user_id, currUserId))).where(isNull(applications.id));
 }
 
+export const dynamic = 'force-dynamic'
+
 export default async function ApplicationsPage() {
   const { id: currUserId } = await getCurrentUser();
   const companies = await getUserNotAppliedCompanies(currUserId);

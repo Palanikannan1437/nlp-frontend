@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react";
+import { FormEvent, useRef } from "react";
 import { Application, Company, User } from "../db/schema";
 import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,11 +9,12 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function IntroductionForm({ user, company }: { user: User, company: Company }) {
   const router = useRouter();
 
-  async function submitApplication(e) {
+  async function submitApplication(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
     if (!introRef.current?.value) {
       return;
     }
+
     const application: Application = {
       user_id: user.id,
       resume: introRef.current?.value,

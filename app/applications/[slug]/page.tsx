@@ -1,9 +1,11 @@
-import IntroductionForm from "@/app/components/IntroductionForm";
-import { getApplication, getApplications } from "@/app/db";
-import { applications } from "@/app/db/schema";
+import { getApplication } from "@/app/db";
 import ApplicationHandler from "./applicationHandler";
 
-export default async function ApplicationsPage({ params }) {
+type SlugParamsApplication = {
+  slug: number;
+}
+export const dynamicParams = true
+export default async function ApplicationsPage({ params }: { params: SlugParamsApplication }) {
   const [application] = await getApplication(params.slug);
 
   const mapping = {

@@ -2,7 +2,11 @@ import IntroductionForm from "@/app/components/IntroductionForm";
 import { getCompany } from "@/app/db";
 import { getCurrentUser } from "@/lib/session";
 
-export default async function ApplicationsPage({ params }) {
+type SlugParamsCompany = {
+  slug: number;
+}
+export const dynamicParams = true
+export default async function ApplicationsPage({ params }: { params: SlugParamsCompany }) {
   const user = await getCurrentUser();
 
   const [company] = await getCompany(params.slug)

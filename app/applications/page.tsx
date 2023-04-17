@@ -11,11 +11,10 @@ async function getApplicationsWithUsers() {
     .leftJoin(companies, eq(applications.company_id, companies.id))
     .where(eq(applications.status, "pending"));
 }
-
+export const dynamic = 'force-dynamic'
 export default async function ApplicationsPage() {
   const applications = await getApplicationsWithUsers()
 
-  console.log(applications)
   return (
     <>
       <div className="container my-12 mx-auto px-4 md:px-12">
